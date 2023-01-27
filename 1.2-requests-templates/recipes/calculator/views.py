@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -28,3 +29,23 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def info(request):
+    return HttpResponse('info')
+
+def  recipe(request):
+    path = request.META.get('PATH_INFO').strip('/')  # omlet
+    print(path)
+    servings_param = request.GET.get('servings')
+    print('servings_param', servings_param)
+    context = {
+      'recipe': DATA.get(path)
+    }
+    if servings_param is not None:
+        context = {'recipe': {key: value * abs(int(servings_param))
+                              for key, value in context.get('recipe').items()}}
+    print(context)
+    return render(request, 'calculator/index.html', context)
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', {})#status=404)
