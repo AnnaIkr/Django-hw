@@ -1,6 +1,6 @@
 # примеры API-запросов
 
-@baseUrl = http://localhost:8000/create/
+@baseUrl = http://localhost:8000/api
 
 # получение датчиков
 GET {{baseUrl}}/sensors/
@@ -9,7 +9,7 @@ Content-Type: application/json
 ###
 
 # создание датчика
-POST {{baseUrl}}/create/
+POST {{baseUrl}}/sensors/
 Content-Type: application/json
 
 {
