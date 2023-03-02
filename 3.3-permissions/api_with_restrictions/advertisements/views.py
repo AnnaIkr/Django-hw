@@ -20,6 +20,6 @@ class AdvertisementViewSet(ModelViewSet):
             return [IsAuthenticated()]
         if self.action in ["update", "partial_update"]:
             return [CanDelUpd()]
-            if self.request.method == "DELETE":
+        if self.request.method == "DELETE":
                 return [CanDelUpd()]
         return []
